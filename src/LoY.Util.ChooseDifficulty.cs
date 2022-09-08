@@ -22,7 +22,7 @@ namespace LoYUtil
  * 元々はExperience.Battle.EncounterGenerator::GetLevelScaling()にて
  * 敵やアイテムのレベルを調整するものだったようだ
  * Experience.Dungeons.DungeonTreasure::GenerateRandomItems()では
- * GetModifiedPlanModify()しているが､falseで呼び出しているので事実上無関係
+ * GetModifiedPlanModify()しているが､falseで呼び出しているので事実上無関係？
  * デフォルト値はdatabase_assets_all.bundle/DifficultyDataTable参照
  *
  * 難易度Normal時のパラメータ(全イベントクリア後平均レベル57時)
@@ -62,7 +62,6 @@ class ChooseDifficulty
             int f = difficulty - 9;
             bool high = f >> 1 == 1;
             bool low = (f & 1) == 1;
-            //Console.Write($"{difficulty}, {high}, {low}");
             LoYUtilPlugin.mgr.add_flag(DifficultyHigh, high);
             LoYUtilPlugin.mgr.add_flag(DifficultyLow, low);
 
@@ -84,12 +83,10 @@ class ChooseDifficulty
      */
     public static void EnemyLvMultiplier(ref int __result)
     {
-        //int rounded = (int)System.Math.Round(__result * (float)difficulty / 10);
         update_difficulty();
         //黄金の砂時計使用後は敵のレベルをパーティの平均レベル*3/5上げる
         if(SessionFlagAccessorScripts.IsOnScriptFlag(GoldenHourglass.GoldenHourglassUsed))
         {
-            //__result += 40;
             Party party = Party.Current;
             int n = 0;
             for(int i = 0; i < party.MemberCount; ++i)

@@ -15,6 +15,7 @@ namespace LoYUtil
 
 /* 起動画面を少しだけ短縮する
  * BootScreenクラスをそのまますべて書き換えてしまうことに注意
+ * 一番最初に作った部分なので今ならもっとスマートに書けると思う
  */
 class BootScreenFix
 {
@@ -41,7 +42,6 @@ class BootScreenFix
         rpl.inst = __instance;
         rpl.screen = ___screen;
         rpl.images = ___images;
-        //rpl.isBusy = ___isBusy;
         rpl.Awake();
         rpl.Begin(initializer);
         return false;
@@ -211,10 +211,6 @@ class BSReplacer : BootScreen
 
         Application.backgroundLoadingPriority = loadingPriority;
         this.IsFinished = true;
-        //typeof(BootScreen).GetMethod("set_IsFinished", BindingFlags.NonPublic | BindingFlags.Instance).Invoke(this.inst, new object[]{true});
-        //this.isBusy = false;
-        //initializer = null;
-        //this.SetImage(null);
         this.inst.gameObject.SetActive(false);
         yield break;
     }

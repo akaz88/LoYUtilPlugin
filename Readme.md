@@ -308,6 +308,32 @@ MODフォルダ内のスクリプトやxlsxファイルをCommandCompiler.py、D
 - 敵画像などを外部から挿入する方法を調査する（アニメーション周りがかなりめんどくさそう）
 - DungeonInjectorでマップの出口を設定できない(そのため、花石で代用している)
 
+## 本MODの使用するフラグID
+
+ScriptInjectorでロードされるスクリプトから参照可能なフラグは以下となります。
+| フラグID | フラグ番号 |
+| ------ | ------- |
+| ModChooseDifficulty | 1900 |
+| ModScriptInjector | 1901 |
+| ModEnemyInjector | 1902 |
+| ModItemInjector | 1903 |
+| ModDungeonInjector | 1904 |
+| ModImageInjector | 1905 |
+| ModExternalCommand | 1906 |
+| DifficultyHigh | 1500 |
+| DifficultyLow | 1501 |
+| GoldenHourglassUsed | 1502 |
+
+## 本MOD同梱のスクリプトの使用するフラグID
+
+スクリプトで使用しているフラグは以下となります。
+| フラグID | フラグ番号 |
+| ------ | ------- |
+| EX_HanBattle | 2000 |
+| EX_DUNENTER_EDEN | 2001 |
+| EX_EDEN_MEET_ARAHORI | 2002 |
+| LIGHTHUNT_EDEN | 2003 |
+| EX_EDEN_CLEARED | 2004 |
 
 ## change log
 
