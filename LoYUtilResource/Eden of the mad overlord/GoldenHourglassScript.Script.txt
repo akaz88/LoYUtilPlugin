@@ -1,0 +1,194 @@
+insert:932
+key: T_Luki
+
+;アイテム選択肢で黄金の砂時計を追加
+_if:ItemListDecidedItemId:=:ItemId:1007
+	_change_script:"GoldenHourglass"
+_endif
+
+
+
+replace-all
+key: GoldenHourglass
+
+;融合炉会話で黄金の砂時計を渡すと発生
+_set_scenario_title_text:TextId(ルキ)
+_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassTalk01):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassTalk02):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassTalk03):Align(0)
+_wait_key
+_start_selection
+	_set_selection_message:1:TextId(GoldenHourglassUseChoice1)
+	_set_selection_message:2:TextId(GoldenHourglassUseChoice2)
+_show_selection
+;行く
+_decided_selection:1
+	;行くときの処理は_end_selection以下に書く
+;行かない
+_decided_selection:2
+	_hide_npc_bust:NpcBustData(3):ImageHideType(0)
+	_wait_hide_npc_bust:NpcBustData(3)
+	_show_npc_bust:NpcBustData(3):NpcFacialExpressionId(1):NpcBustPositionId(0):ImageShowType(0)
+	_wait_show_npc_bust:NpcBustData(3)
+	_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassNoUseTalk01):Align(0)
+	_wait_key
+	_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassNoUseTalk02):Align(0)
+	_wait_key
+	_clear_scenario_title
+	_hide_scenario
+	_hide_scenario_back_mask
+	_wait_hide_scenario_back_mask
+	_change_script:"T_Luki"
+;キャンセル
+_canceled_selection
+	_hide_npc_bust:NpcBustData(3):ImageHideType(0)
+	_wait_hide_npc_bust:NpcBustData(3)
+	_show_npc_bust:NpcBustData(3):NpcFacialExpressionId(1):NpcBustPositionId(0):ImageShowType(0)
+	_wait_show_npc_bust:NpcBustData(3)
+	_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassNoUseTalk01):Align(0)
+	_wait_key
+	_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassNoUseTalk02):Align(0)
+	_wait_key
+	_clear_scenario_title
+	_hide_scenario
+	_hide_scenario_back_mask
+	_wait_hide_scenario_back_mask
+	_change_script:"T_Luki"
+;使用前会話
+_end_selection
+_stop_bgm:1
+_wait_seconds:1
+_wait_stop_bgm
+_play_bgm:MusicResourceData(4):1
+_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassUseTalk01):Align(0)
+_wait_key
+_hide_npc_bust:NpcBustData(3):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(3)
+_show_npc_bust:NpcBustData(3):NpcFacialExpressionId(5):NpcBustPositionId(0):ImageShowType(0)
+_wait_show_npc_bust:NpcBustData(3)
+_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassUseTalk02):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassUseTalk03):Align(0)
+_wait_key
+_hide_npc_bust:NpcBustData(3):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(3)
+_show_npc_bust:NpcBustData(3):NpcFacialExpressionId(1):NpcBustPositionId(0):ImageShowType(0)
+_wait_show_npc_bust:NpcBustData(3)
+_message_scenario:ScenarioWindowPositionType(0):TextId(GoldenHourglassUseTalk04):Align(0)
+_wait_key
+_hide_npc_bust:NpcBustData(3):ImageHideType(1)
+_wait_hide_npc_bust:NpcBustData(3)
+_clear_scenario_title
+_hide_scenario
+_hide_scenario_back_mask
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(GoldenHourglassUseNarration05):Align(0)
+_wait_key
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(GoldenHourglassUseNarration06):Align(0)
+_wait_key
+_hide_scenario
+_hide_scenario_back_mask
+_call_script:"util_flash_with_se"
+_call_script:"util_white_fade"
+_play_sound:SoundResourceData(60)
+_wait_play_sound:SoundResourceData(60)
+
+;後始末してニューゲームへ
+_call_script:"util_unload_all"
+_leave_party
+_excmd:"GoldenHourglass"
+_call_script:"util_black_fade"
+_set_flag_on:flag(GoldenHourglassUsed)
+_change_script:"S_イベント"
+
+
+
+replace:38-44
+key: S_イベント
+
+;課長作成をスキップ
+;金と花力のリセットも回避
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_start_hero_making
+	_set_money:1000
+	_set_dungeon_making_resource:100
+_endif
+_set_flag_on:flag(S01_00_00)
+_set_item_enhance_cap:3
+_set_enemy_level_modify_modify:0
+_set_item_level_cap_modify:0
+_set_progress:1
+_set_flag_on:flag(GAMEOVER_ON)
+_add_item:ItemInventoryType(0):False:ItemData(758):1
+_add_item:ItemInventoryType(0):False:ItemData(760):1
+_add_item:ItemInventoryType(0):False:ItemData(763):1
+_add_item:ItemInventoryType(0):False:ItemData(761):1
+_add_item:ItemInventoryType(0):False:ItemData(663):1
+_add_item:ItemInventoryType(1):False:ItemData(594):3
+_set_flag_on:flag(KEYWORD_007)
+_set_flag_on:flag(KEYWORD_008)
+_set_flag_on:flag(KEYWORD_009)
+_set_flag_on:flag(KEYWORD_010)
+_set_flag_on:flag(KEYWORD_011)
+_set_flag_on:flag(KEYWORD_012)
+_set_flag_on:flag(KEYWORD_013)
+_set_flag_on:flag(KEYWORD_014)
+_set_flag_on:flag(KEYWORD_015)
+_set_flag_on:flag(ENEMY_DISABLE_PLAN_MODIFY)
+_set_flag_off:flag(FACILITY_COMMAND_PLAYER_SELECT)
+_set_flag_off:flag(FACILITY_COMMAND_PLAYER_MAKING)
+_set_flag_off:flag(FACILITY_COMMAND_PLAYER_CLASSCHANGE)
+_set_flag_off:flag(FACILITY_COMMAND_PLAYER_CAREERUP)
+_set_flag_off:flag(FACILITY_COMMAND_ITEM)
+_set_flag_off:flag(FACILITY_COMMAND_BUY)
+_set_flag_off:flag(FACILITY_COMMAND_SELL)
+_set_flag_off:flag(FACILITY_COMMAND_ITEM_ENHANCE)
+_set_flag_off:flag(FACILITY_COMMAND_DUNGEON_MAKING)
+;ここでオンにしておかないとダンジョンに出られなくなって詰む
+;	-> GoldenHourGlassコマンド側で対処
+;_set_dungeon_entrance_on:DungeonEntranceId(0)
+_set_dungeon_entrance_off:DungeonEntranceId(1)
+_set_dungeon_entrance_off:DungeonEntranceId(2)
+_set_dungeon_entrance_off:DungeonEntranceId(3)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_LADDER)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_BRIDGE)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_GATE)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_RECOVERY)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_ENEMY)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_BANISH)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_SWITCH_001)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_SWITCH_002)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_SWITCH_003)
+_set_flag_off:flag(DUNGEON_INSTANT_RESOURCE_SWITCH_004)
+_set_flag_on:flag(STAY_HANBA_BASE)
+_set_flag_on:flag(RANDOM_ENCOUNTER_OFF)
+_set_flag_on:flag(TUTORIAL_BATTLE_TREASURETRAP)
+_set_event_wakeup_off:"E0016"
+_set_event_wakeup_off:"E0020"
+_set_event_wakeup_off:"E0022"
+_set_event_wakeup_off:"E0023"
+_set_event_wakeup_off:"E0026"
+_set_event_wakeup_off:"E0033"
+_set_event_wakeup_off:"E0310"
+_set_event_wakeup_off:"E0017"
+_set_event_wakeup_off:"E0038"
+_set_event_wakeup_off:"E0079"
+_set_event_wakeup_off:"E0057"
+_set_event_wakeup_off:"M101"
+_set_event_wakeup_off:"E0183"
+_set_event_wakeup_off:"E0226"
+_set_event_wakeup_off:"E0282"
+_set_event_wakeup_off:"M320"
+_set_event_wakeup_off:"E0394"
+_set_event_wakeup_off:"E0227"
+_set_gwork:80:0
+_set_gwork:81:0
+_set_gwork:82:0
+_set_gwork:83:0
+_set_gwork:84:0
+_set_gwork:85:0
+_set_gwork:86:0
+_set_gwork:87:0
+_set_gwork:88:0
+_set_gwork:89:0

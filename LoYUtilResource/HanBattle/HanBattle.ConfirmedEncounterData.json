@@ -1,0 +1,40 @@
+{
+	"id": 300,
+	"parameterLine1Enemy1": {
+		"enemyId": 1990,
+		"count": 1,
+		"level": 4,
+		"encounterTransitionId": 0
+	},
+	"parameterLine1Enemy2": {
+		"enemyId": 0,
+		"count": 0,
+		"level": 0,
+		"encounterTransitionId": 0
+	},
+	"parameterLine1Enemy3": {
+		"enemyId": 0,
+		"count": 0,
+		"level": 0,
+		"encounterTransitionId": 0
+	},
+	"parameterLine2Enemy1": {
+		"enemyId": 2,
+		"count": 0,
+		"level": 41,
+		"encounterTransitionId": 0
+	},
+	"parameterLine2Enemy2": {
+		"enemyId": 0,
+		"count": 0,
+		"level": 0,
+		"encounterTransitionId": 0
+	},
+	"parameterLine2Enemy3": {
+		"enemyId": 0,
+		"count": 0,
+		"level": 0,
+		"encounterTransitionId": 0
+	},
+	"backEnemyGraphic": 0
+}

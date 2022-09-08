@@ -1,0 +1,9 @@
+{
+	"id": 207,
+	"sectorLevel": 4,
+	"confirmedEncounterId": 300,
+	"battleBackground": 33,
+	"dropCap": 10,
+	"dropDivisor": 1,
+	"forceCondition": 0
+}

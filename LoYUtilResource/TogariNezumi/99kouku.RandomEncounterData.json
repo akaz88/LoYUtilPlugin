@@ -1,0 +1,66 @@
+{
+	"id": 103,
+	"parameters":
+	[
+		{
+			"enemyId": 506,
+			"levelModifier": 0,
+			"encounterRate": 1000,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 1,
+			"levelModifier": 0,
+			"encounterRate": 205,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 2,
+			"levelModifier": 0,
+			"encounterRate": 191,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 3,
+			"levelModifier": 0,
+			"encounterRate": 191,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 45,
+			"levelModifier": 0,
+			"encounterRate": 205,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 0,
+			"levelModifier": 0,
+			"encounterRate": 0,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 0,
+			"levelModifier": 0,
+			"encounterRate": 0,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 0,
+			"levelModifier": 0,
+			"encounterRate": 0,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 0,
+			"levelModifier": 0,
+			"encounterRate": 0,
+			"encounterTransitionId": 0
+		},
+		{
+			"enemyId": 0,
+			"levelModifier": 0,
+			"encounterRate": 0,
+			"encounterTransitionId": 0
+		}
+	]
+}

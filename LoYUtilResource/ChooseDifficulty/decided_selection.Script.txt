@@ -1,0 +1,91 @@
+insert:2045
+key: T_Hanba
+
+_decided_selection:5
+	_set_scenario_title_text:TextId(飯場)
+	_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyBaseTalk1):Align(0)
+	_wait_key
+	_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyBaseTalk2):Align(0)
+	_wait_key
+	_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyBaseTalk3):Align(0)
+	_wait_key
+	_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyBaseTalk4):Align(0)
+	_wait_key
+
+	_start_selection
+		_set_selection_message:1:TextId(ChooseDifficultySelection1)
+		_set_selection_message:2:TextId(ChooseDifficultySelection2)
+		_set_selection_message:3:TextId(ChooseDifficultySelection3)
+		_set_selection_message:4:TextId(ChooseDifficultySelection4)
+	_show_selection
+
+	;ぬるい
+	_decided_selection:1
+		_set_flag_off:flag(DifficultyHigh)
+		_set_flag_off:flag(DifficultyLow)
+		_hide_scenario
+		_wait_seconds:0.1
+		_message_common_window:TextId(ChooseDifficultyResult1)
+		_wait_key
+		_hide_common_window
+		_set_scenario_title_text:TextId(飯場)
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyEasyTalk1):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyEasyTalk2):Align(0)
+		_wait_key
+
+	;あったかい
+	_decided_selection:2
+		_set_flag_off:flag(DifficultyHigh)
+		_set_flag_on:flag(DifficultyLow)
+		_hide_scenario
+		_wait_seconds:0.1
+		_message_common_window:TextId(ChooseDifficultyResult2)
+		_wait_key
+		_hide_common_window
+		_set_scenario_title_text:TextId(飯場)
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyNormalTalk1):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyNormalTalk2):Align(0)
+		_wait_key
+
+	;あつい
+	_decided_selection:3
+		_set_flag_on:flag(DifficultyHigh)
+		_set_flag_off:flag(DifficultyLow)
+		_hide_scenario
+		_wait_seconds:0.1
+		_message_common_window:TextId(ChooseDifficultyResult3)
+		_wait_key
+		_hide_common_window
+		_set_scenario_title_text:TextId(飯場)
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyHardTalk1):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyHardTalk2):Align(0)
+		_wait_key
+
+	;まるこげ
+	_decided_selection:4
+		_set_flag_on:flag(DifficultyHigh)
+		_set_flag_on:flag(DifficultyLow)
+		_hide_scenario
+		_wait_seconds:0.1
+		_message_common_window:TextId(ChooseDifficultyResult4)
+		_wait_key
+		_hide_common_window
+		_set_scenario_title_text:TextId(飯場)
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyVeryHardTalk1):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyVeryHardTalk2):Align(0)
+		_wait_key
+	
+	;キャンセル
+	_canceled_selection
+		;何もしない
+
+	_end_selection
+	_message_scenario:ScenarioWindowPositionType(0):TextId(ChooseDifficultyBaseTalk5):Align(0)
+	_wait_key
+
+_hide_scenario
+_back_selection:0

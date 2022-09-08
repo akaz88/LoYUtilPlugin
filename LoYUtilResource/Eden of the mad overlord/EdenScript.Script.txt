@@ -1,0 +1,857 @@
+replace-all
+key: C071
+;狂王の城4Fのスクリプト書き換え
+;裏ボスを倒していたら荒堀が再出現＆狂王のエデンへ転移可能になる
+_if:ScriptFlag:flag(S47_02_02)
+	_set_event_wakeup_on:"E0711"
+_endif
+
+
+
+insert:36
+key: E0711
+;狂王の城4F荒堀スクリプトの書き換え
+;荒堀再出現＆狂王のエデンへの転移、要は冬のエデンのエリス役
+_if:ScriptFlag:flag(S47_02_02)
+	;会話
+	_set_scenario_title_text:TextId(荒堀)
+	_if:!:ScriptFlag:flag(EX_EDEN_MEET_ARAHORI)
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk01):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk02):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk03):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk04):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk05):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk06):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk07):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk08):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk09):Align(0)
+		_wait_key
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk10):Align(0)
+		_set_flag_on:flag(EX_EDEN_MEET_ARAHORI)
+	_else
+		_message_scenario:ScenarioWindowPositionType(0):TextId(EdenArahoriTalk11):Align(0)
+	_endif
+	_wait_key
+	;選択肢
+	_start_selection
+		_set_selection_message:1:TextId(EdenfromCastle1)
+		_set_selection_message:2:TextId(EdenfromCastle2)
+	_show_selection
+	;行く
+	_decided_selection:1
+		_hide_scenario
+		_wait_seconds:0.1
+		_stop_sound:SoundResourceData(213):1
+		_wait_seconds:0.3
+		_fade_in:0.5:1
+		_wait_fade
+		_hide_background_all:0
+		_hide_npc_bust_all:ImageHideType(1)
+		_hide_cev_all:ImageHideType(1)
+		_wait_hide_background_all
+		_wait_hide_npc_bust_all
+		_wait_hide_cev_all
+		_wait_seconds:0.2
+		_hide_scenario_back_mask
+		_wait_hide_scenario_back_mask
+		_unload_npc_bust_all
+		_unload_cev_all
+		_unload_background_all
+		_wait_play_sound:SoundResourceData(213)
+	;行かない
+	_decided_selection:2
+		_hide_scenario
+		_wait_seconds:0.1
+		_stop_sound:SoundResourceData(213):1
+		_wait_seconds:0.3
+		_fade_in:0.5:1
+		_wait_fade
+		_hide_background_all:0
+		_hide_npc_bust_all:ImageHideType(1)
+		_hide_cev_all:ImageHideType(1)
+		_wait_hide_background_all
+		_wait_hide_npc_bust_all
+		_wait_hide_cev_all
+		_wait_seconds:0.2
+		_hide_scenario_back_mask
+		_wait_hide_scenario_back_mask
+		_unload_npc_bust_all
+		_unload_cev_all
+		_unload_background_all
+		_wait_play_sound:SoundResourceData(213)
+		_play_dungeon_bgm:1
+		_exit_script
+	;キャンセル
+	_canceled_selection
+		_hide_scenario
+		_wait_seconds:0.1
+		_stop_sound:SoundResourceData(213):1
+		_wait_seconds:0.3
+		_fade_in:0.5:1
+		_wait_fade
+		_hide_background_all:0
+		_hide_npc_bust_all:ImageHideType(1)
+		_hide_cev_all:ImageHideType(1)
+		_wait_hide_background_all
+		_wait_hide_npc_bust_all
+		_wait_hide_cev_all
+		_wait_seconds:0.2
+		_hide_scenario_back_mask
+		_wait_hide_scenario_back_mask
+		_unload_npc_bust_all
+		_unload_cev_all
+		_unload_background_all
+		_wait_play_sound:SoundResourceData(213)
+		_play_dungeon_bgm:1
+		_exit_script
+	;ワープ
+	_end_selection
+	_wait_seconds:1
+	_play_sound:SoundResourceData(59)
+	_fade_out:"#EEEEEEff":1:GraphicsSortOrderId(18):0
+	_wait_fade
+	_fade_in:0:1
+	_wait_fade
+	_move_in_dungeon:SectorData(206):27:16:DirectionType(2)
+	_fade_in:1:0
+	_wait_fade
+	_wait_seconds:0.5
+	_exit_script
+_endif
+
+
+
+replace-all
+key: D_EDEN
+;看板を表示する
+_play_effect:EffectData(132):GraphicsSortOrderId(17):0:0:True
+_wait_play_effect:EffectData(132)
+_stop_effect:EffectData(132)
+
+
+
+replace-all
+key: EntryEden
+
+_if:!:ScriptFlag:flag(EX_DUNENTER_EDEN)
+	;C_Map47をパクって作成
+	_fade_in:1:0
+	_wait_fade
+	_play_dungeon_ambient
+	_play_dungeon_bgm:1
+	_wait_seconds:2
+	_clear_scenario_title
+	_message_scenario_narration:ScenarioWindowPositionType(0):TextId(OnEntryEden1):Align(0)
+	_wait_key
+	_message_scenario_narration:ScenarioWindowPositionType(0):TextId(OnEntryEden2):Align(0)
+	_wait_key
+	_message_scenario_narration:ScenarioWindowPositionType(0):TextId(OnEntryEden3):Align(0)
+	_wait_key
+	_hide_scenario
+	_wait_seconds:0.3
+	_set_flag_on:flag(EX_DUNENTER_EDEN)
+;クリアしている場合は入るたびにラスボスとライトスイッチ以外の敵を再出現させる
+_elif:ScriptFlag:flag(EX_EDEN_CLEARED)
+	_set_event_wakeup_on:"EdenBoss1"
+	_set_event_wakeup_on:"EdenBoss2"
+	_set_event_wakeup_on:"EdenBoss3"
+	_set_event_wakeup_on:"EdenBoss4"
+	_set_event_wakeup_on:"EdenBoss5"
+	_set_event_wakeup_on:"EdenBoss6"
+	_set_event_wakeup_on:"EdenBoss7"
+_endif
+
+
+
+replace-all
+key: EdenGate
+;M540から適当に改変
+
+_stop_bgm:1
+_stop_ambient_all:1
+_fade_out:"#000000aa":0.5:GraphicsSortOrderId(15):1
+_wait_fade
+_wait_stop_bgm
+_play_sound:SoundResourceData(184)
+_wait_seconds:0.3
+
+_start_selection
+	_set_selection_message:1:TextId(花石選択肢1)
+	_set_selection_message:2:TextId(花石選択肢2)
+_show_selection
+;街に飛ぶ
+_decided_selection:1
+	_hide_scenario
+	_wait_seconds:0.1
+;キャンセル
+_decided_selection:2
+	_hide_scenario
+	_wait_seconds:0.1
+	_stop_sound:SoundResourceData(184):1
+	_wait_seconds:0.3
+	_fade_in:0.5:1
+	_wait_fade
+	_hide_background_all:0
+	_hide_enemy_all:EnemyDisappearType(3)
+	_hide_npc_bust_all:ImageHideType(1)
+	_hide_image_all:ImageHideType(1)
+	_hide_cev_all:ImageHideType(1)
+	_wait_hide_background_all
+	_wait_hide_enemy_all
+	_wait_hide_npc_bust_all
+	_wait_hide_image_all
+	_wait_hide_cev_all
+	_wait_seconds:0.2
+	_hide_scenario_back_mask
+	_wait_hide_scenario_back_mask
+	_unload_image_all
+	_unload_npc_bust_all
+	_unload_cev_all
+	_unload_background_all
+	_unload_enemy_all
+	_unload_effect_all
+	_wait_play_sound:SoundResourceData(184)
+	_play_dungeon_bgm:1
+	_play_dungeon_ambient
+	_exit_script
+;キャンセル
+_canceled_selection
+	_hide_scenario
+	_wait_seconds:0.1
+	_stop_sound:SoundResourceData(184):1
+	_wait_seconds:0.3
+	_fade_in:0.5:1
+	_wait_fade
+	_hide_background_all:0
+	_hide_enemy_all:EnemyDisappearType(3)
+	_hide_npc_bust_all:ImageHideType(1)
+	_hide_image_all:ImageHideType(1)
+	_hide_cev_all:ImageHideType(1)
+	_wait_hide_background_all
+	_wait_hide_enemy_all
+	_wait_hide_npc_bust_all
+	_wait_hide_image_all
+	_wait_hide_cev_all
+	_wait_seconds:0.2
+	_hide_scenario_back_mask
+	_wait_hide_scenario_back_mask
+	_unload_image_all
+	_unload_npc_bust_all
+	_unload_cev_all
+	_unload_background_all
+	_unload_enemy_all
+	_unload_effect_all
+	_wait_play_sound:SoundResourceData(184)
+	_play_dungeon_bgm:1
+	_play_dungeon_ambient
+	_exit_script
+;街へ
+_end_selection
+_hide_background_all:0
+_hide_enemy_all:EnemyDisappearType(3)
+_hide_npc_bust_all:ImageHideType(1)
+_hide_image_all:ImageHideType(1)
+_hide_cev_all:ImageHideType(1)
+_wait_hide_background_all
+_wait_hide_enemy_all
+_wait_hide_npc_bust_all
+_wait_hide_image_all
+_wait_hide_cev_all
+_wait_seconds:0.2
+_hide_scenario_back_mask
+_wait_hide_scenario_back_mask
+_unload_image_all
+_unload_npc_bust_all
+_unload_cev_all
+_unload_background_all
+_unload_enemy_all
+_unload_effect_all
+_wait_seconds:1
+_play_sound:SoundResourceData(59)
+_stop_sound:SoundResourceData(184):0
+_wait_play_sound:SoundResourceData(184)
+_fade_out:"#EEEEEEff":1:GraphicsSortOrderId(18):0
+_wait_fade
+_fade_in:0:1
+_wait_fade
+;倉庫テントへ
+_move_city:FacilityId(3)
+_fade_in:1:0
+_wait_fade
+_wait_seconds:0.5
+_exit_script
+
+
+
+replace-all
+key: EdenLightSwitch
+;E0543より拝借
+
+;LightSwitch共通分
+;めんどいのでチュートリアル部分はカット
+_play_sound:SoundResourceData(21)
+_load_image:EventImageData(94)
+_load_image:EventImageData(93)
+_wait_load_image_all
+_show_scenario_back_mask
+_wait_show_scenario_back_mask
+_show_image:EventImageData(94):554:280:ImageShowType(1)
+_wait_show_image:EventImageData(94)
+_wait_seconds:1
+_play_sound:SoundResourceData(23)
+_show_image:EventImageData(93):554:280:ImageShowType(1)
+_wait_show_image:EventImageData(93)
+_wait_seconds:1
+_hide_image:EventImageData(94):ImageHideType(0)
+_wait_hide_image:EventImageData(94)
+_clear_scenario_title
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(ライト文言5):Align(0)
+_wait_key
+_hide_scenario
+_wait_seconds:0.3
+_stop_sound:SoundResourceData(23):1
+_hide_image:EventImageData(93):ImageHideType(1)
+_wait_hide_image:EventImageData(93)
+_hide_scenario_back_mask
+_wait_hide_scenario_back_mask
+_wait_play_sound:SoundResourceData(23)
+_unload_image:EventImageData(93)
+_unload_image:EventImageData(94)
+
+_stop_ambient_all:1
+
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(217)
+_set_battle_bgm:MusicResourceData(11)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+
+;LightSwitch共通分
+_hide_background_all:0
+_hide_enemy_all:EnemyDisappearType(0)
+_hide_npc_bust_all:ImageHideType(0)
+_hide_image_all:ImageHideType(0)
+_hide_cev_all:ImageHideType(0)
+_wait_hide_background_all
+_wait_hide_enemy_all
+_wait_hide_npc_bust_all
+_wait_hide_image_all
+_wait_hide_cev_all
+_hide_scenario_back_mask
+_wait_hide_scenario_back_mask
+_change_camera_height:0:0:True
+_wait_change_camera_height
+_wait_seconds:0.5
+_fade_in:0.5:0
+_wait_fade
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(0)
+_else
+	_wait_seconds:1
+	_play_sound:SoundResourceData(121)
+	_fade_out:"#EEEEEEff":0.1:GraphicsSortOrderId(15):1
+	_wait_fade
+	_fade_in:0.1:1
+	_wait_fade
+	_wait_seconds:0.5
+	_set_sector_luminance_level:SectorData(206):LuminanceLevel(0)
+	_set_flag_on:flag(LIGHTHUNT_EDEN)
+	_set_event_wakeup_off:"EdenLightSwitch"
+	_wait_seconds:3
+	_clear_scenario_title
+	;ライト文言1はLocalWork#11にセットされたセクターIDを参照してセクター名を表示している
+	_set_lwork:11:SectorIdCurrent
+	_message_common_window:TextId(ライト文言1)
+	_play_sound:SoundResourceData(17)
+	_wait_seconds:1
+	_wait_key
+	_hide_scenario
+	_wait_seconds:0.3
+_endif
+_exit_script
+
+
+
+replace-all
+key: EdenBoss1
+
+_stop_ambient_all:1
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(218)
+_set_battle_bgm:MusicResourceData(11)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(1)
+_else
+	_set_event_wakeup_off:"EdenBoss1"
+_endif
+
+
+
+replace-all
+key: EdenBoss2
+
+_stop_ambient_all:1
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(219)
+_set_battle_bgm:MusicResourceData(11)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(2)
+_else
+	_set_event_wakeup_off:"EdenBoss2"
+_endif
+
+
+
+replace-all
+key: EdenBoss3
+
+_stop_ambient_all:1
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(220)
+_set_battle_bgm:MusicResourceData(12)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(3)
+_else
+	_set_event_wakeup_off:"EdenBoss3"
+_endif
+
+
+
+replace-all
+key: EdenBoss4
+
+_stop_ambient_all:1
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(221)
+_set_battle_bgm:MusicResourceData(12)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(0)
+_else
+	_set_event_wakeup_off:"EdenBoss4"
+_endif
+
+
+
+replace-all
+key: EdenBoss5
+
+_stop_ambient_all:1
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(222)
+_set_battle_bgm:MusicResourceData(12)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(1)
+_else
+	_set_event_wakeup_off:"EdenBoss5"
+_endif
+
+
+
+replace-all
+key: EdenBoss6
+
+_stop_ambient_all:1
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(223)
+_set_battle_bgm:MusicResourceData(12)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(2)
+_else
+	_set_event_wakeup_off:"EdenBoss6"
+_endif
+
+
+
+replace-all
+key: EdenBoss7
+
+_stop_ambient_all:1
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(224)
+_set_battle_bgm:MusicResourceData(12)
+_set_battle_treasurebox_on
+_set_battle_treasurebox_trap_on
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_off
+_set_battle_escape_enemy_off
+_set_battle_escape_player_on
+_set_battle_background_default
+_set_battle_result_bgm_default
+_start_battle
+
+_play_dungeon_ambient
+_if:IsLastBattleEscaped
+	_move_party:DirectionType(3)
+_else
+	_set_event_wakeup_off:"EdenBoss7"
+_endif
+
+
+
+replace-all
+key: EdenLastBoss
+
+;戦闘前イベント
+_load_cev:CevData(1)
+_wait_load_cev_all
+_stop_bgm:1
+_stop_ambient_all:1
+_wait_seconds:0.5
+_wait_stop_bgm
+_show_cev_position_id:CevData(1):CevPositionId(0):ImageShowType(1)
+_wait_show_cev:CevData(1)
+_wait_seconds:1
+_play_bgm:MusicResourceData(3):1
+
+_clear_scenario_title
+_set_scenario_title_text:TextId(久世戸)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk01):Align(0)
+_wait_key
+	;_hide_scenario
+	;_hide_cev_all
+	;_change_script:"EdenReturnBase"
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk02):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk03):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk04):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk05):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk06):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk07):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk08):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk09):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk10):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk11):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPreTalk12):Align(0)
+_wait_key
+_hide_scenario
+;_exit_script
+
+;戦闘
+_setup_battle_dungeon_confirmed:ConfirmedEncounterData(225)
+_set_battle_bgm:MusicResourceData(19)
+_set_battle_treasurebox_off
+_set_battle_treasurebox_trap_off
+_set_battle_encounter_effect:TransitionType(17)
+_set_battle_encounter_se_on
+_set_battle_gameover_on
+_set_battle_escape_enemy_off
+_set_battle_escape_player_off
+_set_battle_background_default
+_set_battle_result_bgm_none
+_start_battle
+
+_play_dungeon_ambient
+;戦闘後はフェードインさせないと画面が暗転したまま
+_fade_in:0.5:0
+_wait_fade
+;戦闘後イベント
+_set_scenario_title_text:TextId(久世戸)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPostTalk01):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenLastBossPostTalk02):Align(0)
+_wait_key
+_hide_cev:CevData(1):ImageHideType(1)
+_wait_hide_cev:CevData(1)
+_unload_cev:CevData(1)
+_wait_seconds:1
+_clear_scenario_title
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(EdenLastBossPostNarration01):Align(0)
+_wait_key
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(EdenLastBossPostNarration02):Align(0)
+_wait_key
+_hide_scenario
+_play_sound:SoundResourceData(17)
+_message_common_window:TextId(EdenLastBossPostNarration03)
+_wait_key
+_hide_common_window
+_add_item:ItemInventoryType(0):False:ItemData(1007):1
+_set_flag_on:flag(EX_EDEN_CLEARED)
+_set_event_wakeup_off:"EdenLastBoss"
+;_play_dungeon_bgm:1
+_stop_ambient_all:1
+_change_script:"EdenReturnBase"
+
+
+
+replace-all
+key: EdenReturnBase
+
+;各種データのロード
+_load_background:BackgroundData(44)
+	;ゲート
+_load_background:BackgroundData(8)
+	;融合炉
+_load_cev:CevData(3)
+	;ルキ
+_load_cev:CevData(11)
+	;灰十字
+_load_npc_bust:NpcBustData(3)
+	;ルキ
+	;FacialID: 0:ルキ普通, 1:ルキにっこり, 5:ルキ目つむり, 6: ルキびっくり
+_load_npc_bust:NpcBustData(9)
+	;灰十字
+	;FacialID: 0:灰十字ガン飛ばし, 1:灰十字そっぽ, 12:灰十字前下方, 13:灰十字イっちゃってる
+_wait_load_background_all
+_wait_load_cev_all
+_wait_load_npc_bust_all
+;拠点に移動
+_play_sound:SoundResourceData(59)
+;_fade_out:"#EEEEEEff":1:GraphicsSortOrderId(18):0
+:_wait_fade
+_call_script:"util_black_fade"
+;_fade_in:0:1
+;_wait_fade
+;倉庫テントへ
+_show_background:BackgroundData(44):0
+_wait_show_background:BackgroundData(44)
+_fade_in:1:0
+_play_bgm:MusicResourceData(2):1
+	;クリア後キャンプBGM
+_wait_fade
+;灰十字出現
+_show_cev_position_id:CevData(11):CevPositionId(0):ImageShowType(0)
+_show_npc_bust:NpcBustData(9):NpcFacialExpressionId(0):NpcBustPositionId(0):ImageShowType(1)
+_wait_show_cev:CevData(11)
+_wait_show_npc_bust:NpcBustData(9)
+_wait_seconds:0.5
+_set_scenario_title_text:TextId(灰十字)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk01H):Align(0)
+_wait_key
+;灰十字一旦消えて荷物あさり
+_hide_npc_bust:NpcBustData(9):ImageHideType(1)
+_wait_hide_npc_bust:NpcBustData(9)
+_clear_scenario_title
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(EdenReturnBaseNarration02):Align(0)
+_play_sound:SoundResourceData(231)
+_wait_key
+_stop_sound:SoundResourceData(231):1
+;再出現して話す
+_show_npc_bust:NpcBustData(9):NpcFacialExpressionId(0):NpcBustPositionId(0):ImageShowType(1)
+_wait_show_npc_bust:NpcBustData(9)
+_wait_seconds:0.5
+_set_scenario_title_text:TextId(灰十字)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk03H):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk03.5H):Align(0)
+_wait_key
+_clear_scenario_title
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(EdenReturnBaseNarration04):Align(0)
+_wait_key
+_hide_npc_bust:NpcBustData(9):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(9)
+_show_npc_bust:NpcBustData(9):NpcFacialExpressionId(1):NpcBustPositionId(0):ImageShowType(0)
+_wait_show_npc_bust:NpcBustData(9)
+_set_scenario_title_text:TextId(灰十字)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk05H):Align(0)
+_wait_key
+_wait_seconds:0.5
+_hide_npc_bust:NpcBustData(9):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(9)
+_show_npc_bust:NpcBustData(9):NpcFacialExpressionId(13):NpcBustPositionId(0):ImageShowType(0)
+_wait_show_npc_bust:NpcBustData(9)
+_set_scenario_title_text:TextId(灰十字)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk06H):Align(0)
+_wait_key
+_wait_seconds:1
+_hide_npc_bust:NpcBustData(9):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(9)
+_show_npc_bust:NpcBustData(9):NpcFacialExpressionId(0):NpcBustPositionId(0):ImageShowType(0)
+_wait_show_npc_bust:NpcBustData(9)
+_set_scenario_title_text:TextId(灰十字)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk07H):Align(0)
+_wait_key
+_set_scenario_title_text:TextId(灰十字)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk08H):Align(0)
+_wait_key
+_hide_scenario
+;暗転しつつ融合炉へ移動
+_call_script:"util_black_fade"
+_stop_bgm:1
+_message_scenario_narration:ScenarioWindowPositionType(0):TextId(EdenReturnBaseNarration09):Align(0)
+;_wait_seconds:2.0
+_hide_npc_bust:NpcBustData(9):ImageHideType(0)
+_hide_cev:CevData(11):ImageHideType(0)
+_hide_background:BackgroundData(44):0
+_wait_hide_npc_bust:NpcBustData(9)
+_wait_hide_cev:CevData(11)
+_wait_hide_background:BackgroundData(4)
+_show_background:BackgroundData(8):0
+_wait_show_background:BackgroundData(8)
+_show_cev_position_id:CevData(3):CevPositionId(0):ImageShowType(0)
+_wait_show_cev:CevData(3)
+_fade_in:2:0
+_wait_fade
+_wait_key
+;ルキ会話
+_hide_npc_bust:NpcBustData(3):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(3)
+_play_bgm:MusicResourceData(4):1
+	;罪人アルゲン抽出BGM
+_show_npc_bust:NpcBustData(3):NpcFacialExpressionId(0):NpcBustPositionId(0):ImageShowType(1)
+_wait_show_npc_bust:NpcBustData(3)
+_set_scenario_title_text:TextId(ルキ)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk10L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk11L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk12L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk13L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk14L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk15L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk16L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk17L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk18L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk19L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk20L):Align(0)
+_wait_key
+_hide_npc_bust:NpcBustData(3):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(3)
+_show_npc_bust:NpcBustData(3):NpcFacialExpressionId(5):NpcBustPositionId(0):ImageShowType(0)
+_wait_show_npc_bust:NpcBustData(3)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk21L):Align(0)
+_wait_key
+_hide_npc_bust:NpcBustData(3):ImageHideType(0)
+_wait_hide_npc_bust:NpcBustData(3)
+_show_npc_bust:NpcBustData(3):NpcFacialExpressionId(0):NpcBustPositionId(0):ImageShowType(0)
+_wait_show_npc_bust:NpcBustData(3)
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk22L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk23L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk24L):Align(0)
+_wait_key
+_message_scenario:ScenarioWindowPositionType(0):TextId(EdenReturnBaseTalk25L):Align(0)
+_wait_key
+_hide_scenario
+;後始末
+;フェードアウトしてから色々と隠さないとダンジョンが表示されてしまうので注意
+;また、ちゃんと後始末してからスクリプトを終了させないとUI周りのエラーが発生する
+_call_script:"util_black_fade"
+_hide_cev_all:ImageHideType(1)
+_hide_npc_bust_all:ImageHideType(1)
+_hide_background_all:1.0
+_wait_hide_cev_all
+_wait_hide_npc_bust_all
+_wait_hide_background_all
+_unload_background_all
+_unload_cev_all
+_unload_npc_bust_all
+;融合炉へ
+_move_city:FacilityId(2)
+_exit_script
+
+
+
+
+
+
+
+

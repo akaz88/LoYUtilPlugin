@@ -1,0 +1,384 @@
+insert:51
+key: C_Map44
+
+_if:ScriptFlag:flag(GoldenHourglassUsed)
+	_exit_script
+_endif
+
+
+
+replace:18-24
+key: C004
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_if:!:ScriptFlag:flag(DUNENTER_02)
+		_add_tutorial_text:TextId(TU_racedamage_0001)
+		_add_tutorial_text:TextId(TU_racedamage_0002)
+		_add_tutorial_text:TextId(TU_racedamage_0003)
+		_show_tutorial:False:False
+	_endif
+_endif
+
+
+
+replace:18-24
+key: C005
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_if:!:ScriptFlag:flag(DUNENTER_02)
+		_add_tutorial_text:TextId(TU_racedamage_0001)
+		_add_tutorial_text:TextId(TU_racedamage_0002)
+		_add_tutorial_text:TextId(TU_racedamage_0003)
+		_show_tutorial:False:False
+	_endif
+_endif
+
+
+
+replace:17-23
+key: C007
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_if:!:ScriptFlag:flag(DUNENTER_03)
+		_add_tutorial_text:TextId(TU_racedamage_0001)
+		_add_tutorial_text:TextId(TU_racedamage_0002)
+		_add_tutorial_text:TextId(TU_racedamage_0003)
+		_show_tutorial:False:False
+	_endif
+_endif
+
+
+
+replace:18-24
+key: C008
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_if:!:ScriptFlag:flag(DUNENTER_03)
+		_add_tutorial_text:TextId(TU_racedamage_0001)
+		_add_tutorial_text:TextId(TU_racedamage_0002)
+		_add_tutorial_text:TextId(TU_racedamage_0003)
+		_show_tutorial:False:False
+	_endif
+_endif
+
+
+insert:1
+key: E0001
+
+_if:ScriptFlag:flag(GoldenHourglassUsed)
+	_exit_script
+_endif
+
+
+
+replace:26-28
+key: E0010
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_healing_0001)
+	_add_tutorial_text:TextId(TU_healing_0002)
+	_add_tutorial_text:TextId(TU_healing_0003)
+	_add_tutorial_text:TextId(TU_healing_0004)
+	_show_tutorial:False:True
+_endif
+
+
+
+replace:132-134
+key: E0016
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_dunmake_0001)
+	_add_tutorial_text:TextId(TU_dunmake_0002)
+	_add_tutorial_text:TextId(TU_dunmake_0003)
+	_add_tutorial_text:TextId(TU_dunmake_0004)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_dunmake_0005)
+	_add_tutorial_text:TextId(TU_dunmake_0006)
+	_add_tutorial_text:TextId(TU_dunmake_0007)
+	_show_tutorial:True:False
+_endif
+
+
+
+replace:18-20
+key: E0021
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_enemies_0001)
+	_add_tutorial_text:TextId(TU_enemies_0002)
+	_add_tutorial_text:TextId(TU_enemies_0003)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:18-20
+key: E0025
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_enemypoint_0001)
+	_add_tutorial_text:TextId(TU_enemypoint_0002)
+	_add_tutorial_text:TextId(TU_enemypoint_0003)
+	_add_tutorial_text:TextId(TU_enemypoint_0004)
+	_add_tutorial_text:TextId(TU_enemypoint_0005)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:47-50
+key: E0026
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_hole_0001)
+	_add_tutorial_text:TextId(TU_hole_0002)
+	_add_tutorial_text:TextId(TU_hole_0003)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_hole_0005)
+	_add_tutorial_text:TextId(TU_hole_0006)
+	_add_tutorial_text:TextId(TU_hole_0007)
+	_show_tutorial:True:False
+_endif
+
+
+
+replace:29-31
+key: E0035
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_search_0001)
+	_add_tutorial_text:TextId(TU_search_0002)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:232-236
+key: E1001
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_healing_0001)
+	_add_tutorial_text:TextId(TU_healing_0002)
+	_add_tutorial_text:TextId(TU_healing_0003)
+	_add_tutorial_text:TextId(TU_healing_0004)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_help_0001)
+	_add_tutorial_text:TextId(TU_help_0002)
+	_add_tutorial_text:TextId(TU_help_0003)
+	_show_tutorial:True:False
+_endif
+
+
+replace:55-57
+key: E1003
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_talk_0001)
+	_add_tutorial_text:TextId(TU_talk_0002)
+	_add_tutorial_text:TextId(TU_talk_0003)
+	;これはバグな気がする
+	_hide_common_window
+	_wait_seconds:0.3
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:97-99
+key: E1009
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_chamake_0001)
+	_add_tutorial_text:TextId(TU_chamake_0002)
+	_add_tutorial_text:TextId(TU_chamake_0003)
+	_add_tutorial_text:TextId(TU_chamake_0004)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:31-36
+key: E1010
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_dunmap_0001)
+	_add_tutorial_text:TextId(TU_dunmap_0002)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_recovery_0001)
+	_add_tutorial_text:TextId(TU_recovery_0002)
+	_add_tutorial_text:TextId(TU_recovery_0003)
+	_add_tutorial_text:TextId(TU_recovery_0004)
+	_show_tutorial:True:False
+_endif
+
+
+
+replace:314-316
+key: E1013
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_reactor_0001)
+	_add_tutorial_text:TextId(TU_reactor_0002)
+	_add_tutorial_text:TextId(TU_reactor_0003)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_reactor_0004)
+	_add_tutorial_text:TextId(TU_reactor_0005)
+	_add_tutorial_text:TextId(TU_reactor_0006)
+	_add_tutorial_text:TextId(TU_reactor_0008)
+	_add_tutorial_text:TextId(TU_reactor_0009)
+	_show_tutorial:True:True
+	_add_tutorial_text:TextId(TU_reactor_0010)
+	_add_tutorial_text:TextId(TU_reactor_0011)
+	_add_tutorial_text:TextId(TU_reactor_0012)
+	_show_tutorial:True:False
+_endif
+
+
+
+replace:181-183
+key: E1015
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_levelup_0001)
+	_add_tutorial_text:TextId(TU_levelup_0002)
+	_add_tutorial_text:TextId(TU_levelup_0003)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_levelup_0004)
+	_add_tutorial_text:TextId(TU_levelup_0005)
+	_add_tutorial_text:TextId(TU_levelup_0006)
+	_show_tutorial:True:False
+_endif
+
+
+
+replace:257-262
+key: E1016
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_lose_0001)
+	_add_tutorial_text:TextId(TU_lose_0002)
+	_add_tutorial_text:TextId(TU_lose_0003)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_yomihana_0001)
+	_add_tutorial_text:TextId(TU_yomihana_0002)
+	_add_tutorial_text:TextId(TU_yomihana_0003)
+	_add_tutorial_text:TextId(TU_yomihana_0004)
+	_show_tutorial:True:False
+_endif
+
+
+
+replace:504-505
+key: E1021
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_exinfo_0001)
+	_add_tutorial_text:TextId(TU_exinfo_0002)
+	_add_tutorial_text:TextId(TU_exinfo_0003)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:695-697
+key: E1021
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_return_0001)
+	_add_tutorial_text:TextId(TU_return_0002)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:121-123
+key: E1022
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_subquest_0001)
+	_add_tutorial_text:TextId(TU_subquest_0002)
+	_add_tutorial_text:TextId(TU_subquest_0003)
+	_add_tutorial_text:TextId(TU_subquest_0004)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:55-60
+key: E1023
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_radio_0001)
+	_add_tutorial_text:TextId(TU_radio_0002)
+	_add_tutorial_text:TextId(TU_radio_0003)
+	_add_tutorial_text:TextId(TU_radio_0004)
+	_show_tutorial:False:True
+	_add_tutorial_text:TextId(TU_automove_0001)
+	_add_tutorial_text:TextId(TU_automove_0002)
+	_add_tutorial_text:TextId(TU_automove_0003)
+	_show_tutorial:True:False
+_endif
+
+
+
+replace:45-47
+key: E1042
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_lukiattack_0001)
+	_add_tutorial_text:TextId(TU_lukiattack_0002)
+	_add_tutorial_text:TextId(TU_lukiattack_0003)
+	_add_tutorial_text:TextId(TU_lukiattack_0004)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:133-135
+key: E1078
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_fl_gate_0001)
+	_add_tutorial_text:TextId(TU_fl_gate_0002)
+	_add_tutorial_text:TextId(TU_fl_gate_0003)
+	_add_tutorial_text:TextId(TU_fl_gate_0004)
+	_add_tutorial_text:TextId(TU_fl_gate_0005)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:121-123
+key: E1198
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_noodle_0001)
+	_add_tutorial_text:TextId(TU_noodle_0002)
+	_add_tutorial_text:TextId(TU_noodle_0003)
+	_add_tutorial_text:TextId(TU_noodle_0004)
+	_show_tutorial:False:False
+_endif
+
+
+
+replace:162-164
+key: E1511
+
+_if:!:ScriptFlag:flag(GoldenHourglassUsed)
+	_add_tutorial_text:TextId(TU_dream_0001)
+	_add_tutorial_text:TextId(TU_dream_0002)
+	_add_tutorial_text:TextId(TU_dream_0003)
+	_add_tutorial_text:TextId(TU_dream_0004)
+	_add_tutorial_text:TextId(TU_dream_0005)
+	_show_tutorial:False:False
+_endif
+
+
+
+insert:1
+key: Tutorial_Subquest
+
+_if:ScriptFlag:flag(GoldenHourglassUsed)
+	_exit_script
+_endif

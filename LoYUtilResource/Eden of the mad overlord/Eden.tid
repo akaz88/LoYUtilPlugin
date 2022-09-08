@@ -1,0 +1,115 @@
+Eden:[MOD]狂王のエデン,
+OnEntryEden1:転移した先には広大な空間が広がっていた。,
+OnEntryEden2:こちらを威圧するような重々しい空気は黄泉子宮のようだが、
+大聖堂のようなある種張り詰めた神々しさも感じる。,
+OnEntryEden3:ここがどのような場所であれ、目の前に続く道は一つだ。
+進むしかない。,
+EdenArahoriTalk01:「よう、久世戸の野郎を倒したんだってな。」,
+EdenArahoriTalk02:「……なんで知ってるかって？
+　そりゃあ聞いたからさ、<color=Red>久世戸本人</color>からな。」,
+EdenArahoriTalk03:「……久世戸の記憶生命体は一人だけじゃなかったのさ。
+　そしてそいつはここを通り、エデンへと渡った。」,
+EdenArahoriTalk04:「なんでも昔、神ならざる者が神に準ずる存在として
+　生まれ出ようとした場所なんだとよ。」,
+EdenArahoriTalk05:「……とはいえここは黄泉だ、異世界じゃねえ。」,
+EdenArahoriTalk06:「もし久世戸がそれに成功したとして、
+　いまさら新世界創造を成し遂げられるとは思えねえ。」,
+EdenArahoriTalk07:「だからもう、俺はあいつに興味はねえのさ。
+　手伝ってやる義理も、阻む理由もねえ。」,
+EdenArahoriTalk08:「だが、おまえはそうではないだろう？」,
+EdenArahoriTalk09:「奴との決着をつけたいってんなら邪魔はしねえ。
+　行ってケリをつけてきな。」,
+EdenArahoriTalk10:「……さて、エデンへ行くのか？」,
+EdenArahoriTalk11:「よう、エデンへ行くのか？」,
+EdenfromCastle1:エデンへ行く,
+EdenfromCastle2:エデンへ行かない,
+EdenLastBossPreTalk01:「９９行区の諸君、御機嫌よう。」,
+EdenLastBossPreTalk02:「ここまでの道すがら、私の木偶人形達は楽しんでくれたかね？」,
+EdenLastBossPreTalk03:「なに、礼には及ばんよ。
+　主というものは客人をもてなすものだからな。」,
+EdenLastBossPreTalk04:「諸君らは私、いや、『久世戸』の与えた試練を乗り越え、
+　その度新たな高みへと上り詰めていった。」,
+EdenLastBossPreTalk05:「その姿を見ているうちに異世界の神話を思い出したよ。」,
+EdenLastBossPreTalk06:「邪なる星は神の下僕に過ぎぬ身でありながら神に反旗を翻し、
+　その身を滅ぼされ、魂を引き裂かれてなお己を高め運命に抗い続けた……。」,
+EdenLastBossPreTalk07:「ここは天の彼方に追放されたかの者が帰還を遂げた場所。」,
+EdenLastBossPreTalk08:「所詮黄泉の作り出した虚像に過ぎぬとは言え、
+　その力の残滓は私を新たな高みへと導いてくれた……。」,
+EdenLastBossPreTalk09:「ここから新たに始まるのだよ。
+　そう、<color=Red>何度でも</color>な。」,
+EdenLastBossPreTalk10:「……さて、そろそろ諸君らにはご退場願おうか。」,
+EdenLastBossPreTalk11:「以前にも言っただろう？
+　私は受けた屈辱を忘れない男なのだ。」,
+EdenLastBossPreTalk12:「二度に渡るこの屈辱、今こそ雪がせてもらおう！」,
+EdenLastBossPostTalk01:「これでもなお及ばないというのか……。」,
+EdenLastBossPostTalk02:「まあ良い。今はまだ……。」,
+EdenLastBossPostNarration01:久世戸の姿は、虚空に消え……,
+EdenLastBossPostNarration02:あとには、光り輝く砂時計が残されていた。,
+EdenLastBossPostNarration03:<color=Red>{TID@GoldenHourglassNameDefault}</color>を手に入れた！,
+GoldenHourglassNameDefault:黄金の砂時計,
+GoldenHourglassName:[MOD]{TID@GoldenHourglassNameDefault},
+GoldenHourglassDesc:物語をやり直すことができる神の砂時計。
+黄金色に光り輝く砂粒が入っているが、
+本物の黄金と比べると、やや軽いようだ。,
+EdenReturnBaseTalk01H:「おや、探行士さん。
+　なかなか<color=Red>変わった物</color>をお持ちじゃありませんか。」,
+EdenReturnBaseNarration02:断りもなしにいきなり灰十字はこちらの荷物を漁り始めた。,
+EdenReturnBaseTalk03H:「ああ、これですこれ。」,
+EdenReturnBaseTalk03.5H:「{TID@GoldenHourglassNameDefault}じゃないですか。
+　こんな物一体どこで拾ってきたんですか？」,
+EdenReturnBaseNarration04:灰十字にエデンでの経緯を説明した。,
+EdenReturnBaseTalk05H:「ははあ、総裁がねえ。
+　あの人も存外人間らしいところがあるものだ。」,
+EdenReturnBaseTalk06H:「……そうすると今は何度目なのだ？
+　系の中からは観測困難ということか？」,
+EdenReturnBaseTalk07H:「……ん？なんだ、まだいたんですか。」,
+EdenReturnBaseTalk08H:「私は忙しいんです、
+　このガラクタのことなら神の子にでも聞いてください。」,
+EdenReturnBaseNarration09:釈然としないまま融合炉に向かい、
+ルキに事の次第を説明した。,
+EdenReturnBaseTalk10L:「……これは究極の魔力が込められた砂時計。
+　時を遡ることができるという話です。」,
+EdenReturnBaseTalk11L:「なんでも砂時計を倒した者の<color=Red>誕生の瞬間</color>まで、
+　時間が巻き戻されるのだとか……。」,
+EdenReturnBaseTalk12L:「……それも本物の{TID@GoldenHourglassNameDefault}の話です。
+　これはあくまで錬金王が作成したまがい物に過ぎません。」,
+EdenReturnBaseTalk13L:「異世界でのこれはうまく動作しませんでしたが、
+　お話を聞くに狂王は黄泉の力でその起動に成功した様子。」,
+EdenReturnBaseTalk14L:「……まがい物を更に黄泉が再構成したものです。
+　効果もあくまで限定的なものとなりましょう。」,
+EdenReturnBaseTalk15L:「どこまで時間が巻き戻されるのかという話になりますと、
+　たぶん、{HERO_POST}さんの場合……。」,
+EdenReturnBaseTalk16L:「<color=Red>９９行区に来た時</color>に巻き戻るのではないかと思います。」,
+EdenReturnBaseTalk17L:「対して狂王の場合はそれがどの時点なのか、
+　正確に推測することは困難です。」,
+EdenReturnBaseTalk18L:「また、本来時間を巻き戻すにあたってはあらゆる知識、
+　経験、持ち物は持っていくことはできませんが……。」,
+EdenReturnBaseTalk19L:「この融合炉の力があれば、
+　それらの一部は持っていくことができるでしょう。」,
+EdenReturnBaseTalk20L:「具体的には世界に矛盾を生じるような物品や記憶。
+　そういったものは失われることでしょう。」,
+EdenReturnBaseTalk21L:「つまり、何度巻き戻っても{HERO_POST}さんの部下の方々や、
+　第二キャンプの方々は殺され続ける……。」,
+EdenReturnBaseTalk22L:「それでも力を得て時を遡った狂王を止められるのは、
+　{HERO_POST}さんしかおりません。」,
+EdenReturnBaseTalk23L:「しかしながら、全ては私達の時の埒外にある事柄……。」,
+EdenReturnBaseTalk24L:「時間を巻き戻すも巻き戻さないも、
+　全ては{HERO_POST}さん次第です。」,
+EdenReturnBaseTalk25L:「もし時間を巻き戻したくなったら、
+　そのときはあらためて私に話しかけてください。」,
+GoldenHourglassUseChoice1:時間を巻き戻す,
+GoldenHourglassUseChoice2:やっぱりやめた,
+GoldenHourglassTalk01:「……決心されたのですか。」,
+GoldenHourglassTalk02:「{HERO_POST}さんがお望みなら、
+　{TID@GoldenHourglassNameDefault}の力を使って時間を巻き戻しましょう。」,
+GoldenHourglassTalk03:「……本当に時間を遡りますか？」,
+GoldenHourglassNoUseTalk01:「……ええ、焦ることはありません。」,
+GoldenHourglassNoUseTalk02:「また考えが変わったら教えてください。」,
+GoldenHourglassUseTalk01:「分かりました……。」,
+GoldenHourglassUseTalk02:「それでは、これでお別れです……。」,
+GoldenHourglassUseTalk03:「また、いつか、どこかで……
+　{HERO_POST}さんに出会えるときをお待ちしております。」,
+GoldenHourglassUseTalk04:「それまで、どうか。
+　お気をつけて……。」,
+GoldenHourglassUseNarration05:{TID@GoldenHourglassNameDefault}を受け取った少女は融合炉へ向かった。,
+GoldenHourglassUseNarration06:そしてそれを炉に焼べた。,

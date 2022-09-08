@@ -1,0 +1,35 @@
+{
+      "id": 55,
+      "groupParameter": [
+        {
+          "enemyId1": 0,
+          "enemyId2": 0,
+          "enemyId3": 0
+        },
+        {
+          "enemyId1": 1991,
+          "enemyId2": 1991,
+          "enemyId3": 0
+        },
+        {
+          "enemyId1": 0,
+          "enemyId2": 0,
+          "enemyId3": 0
+        },
+        {
+          "enemyId1": 0,
+          "enemyId2": 0,
+          "enemyId3": 0
+        },
+        {
+          "enemyId1": 0,
+          "enemyId2": 0,
+          "enemyId3": 0
+        },
+        {
+          "enemyId1": 0,
+          "enemyId2": 0,
+          "enemyId3": 0
+        }
+      ]
+    }

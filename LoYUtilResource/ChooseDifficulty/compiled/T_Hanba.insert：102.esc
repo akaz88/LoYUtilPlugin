@@ -1,0 +1,2 @@
+insert:102
+{"key": "T_Hanba", "value": {"commands": [{"commandId": 6, "lineNumber": 10002, "parameters": [{"rawData": "6", "ParameterType": 50, "rawType": 9}, {"rawData": 1900, "ParameterType": 51, "rawType": 9}]}, {"commandId": 32, "lineNumber": 10003, "parameters": [{"rawData": "5", "ParameterType": 2, "rawType": 9}, {"rawData": "ChooseDifficultySelection", "ParameterType": 6, "rawType": 18}]}, {"commandId": 9, "lineNumber": 10004, "parameters": []}]}}

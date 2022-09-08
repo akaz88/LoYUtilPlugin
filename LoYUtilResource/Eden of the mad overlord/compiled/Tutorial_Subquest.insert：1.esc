@@ -1,0 +1,2 @@
+insert:1
+{"key": "Tutorial_Subquest", "value": {"commands": [{"commandId": 6, "lineNumber": 10002, "parameters": [{"rawData": "6", "ParameterType": 50, "rawType": 9}, {"rawData": 1502, "ParameterType": 51, "rawType": 9}]}, {"commandId": 0, "lineNumber": 10003, "parameters": []}, {"commandId": 9, "lineNumber": 10004, "parameters": []}]}}

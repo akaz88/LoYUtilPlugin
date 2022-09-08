@@ -1,0 +1,6 @@
+insert:102
+key: T_Hanba
+
+_if:ScriptFlag:flag(ModChooseDifficulty)
+	_set_selection_message:5:TextId(ChooseDifficultySelection)
+_endif

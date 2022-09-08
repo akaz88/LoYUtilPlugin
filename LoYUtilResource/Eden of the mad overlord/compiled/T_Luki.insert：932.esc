@@ -1,0 +1,2 @@
+insert:932
+{"key": "T_Luki", "value": {"commands": [{"commandId": 6, "lineNumber": 10003, "parameters": [{"rawData": "21", "ParameterType": 50, "rawType": 9}, {"rawData": "11", "ParameterType": 49, "rawType": 9}, {"rawData": "16", "ParameterType": 50, "rawType": 9}, {"rawData": "1007", "ParameterType": 51, "rawType": 9}]}, {"commandId": 2, "lineNumber": 10004, "parameters": [{"rawData": "GoldenHourglass", "ParameterType": 0, "rawType": 18}]}, {"commandId": 9, "lineNumber": 10005, "parameters": []}]}}
