@@ -10,11 +10,11 @@
 ## CommandReverseCompiler.py
 逆コンパイラです。<br>
 scriptdata_assets_all.bundleから抽出したScriptDataContainer.bytesを逆コンパイルしたり、CommandCompiler.pyでコンパイルしたスクリプトを逆コンパイルできます。<br>
-```CommandReverseCompiler.py <in> <out> [-f/--force] [--key=SCRIPT_NAME] [--no-print]```
 <pre>
-    <in>
+CommandReverseCompiler.py <in> <out> [-f/--force] [--key=SCRIPT_NAME] [--no-print]
+    \<in\>
         入力ファイルとしてコンパイルされたスクリプトを取る
-    <out>
+    \<out\>
         出力ファイル
         "stdout"を指定するとファイルには出力せずに標準出力のみに出力するが、-fオプションと--no-printオプションは無視される
     -f/--force
