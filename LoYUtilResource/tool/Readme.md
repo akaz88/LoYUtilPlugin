@@ -67,10 +67,10 @@ xlsxファイルの例はLoYUtilResource\Eden of the mad overlordを参照して
 <pre>
 DataTableBuilder.py &lt;in&gt; &lt;out&gt; [JapaneseTextData.json] [tid file] [mod dir] [-f/--force]```
     &lt;in&gt;
-        xlsxファイル->jsonファイル : xlsxファイル<br>
+        xlsxファイル->jsonファイル : xlsxファイル
         jsonファイル->xlsxファイル : database_assets_all.bundleから抽出した**DataTableファイル
     &lt;out&gt;
-        xlsxファイル->jsonファイル : 複数のjsonファイルが生成されるため、フォルダを指定する<br>
+        xlsxファイル->jsonファイル : 複数のjsonファイルが生成されるため、フォルダを指定する
         jsonファイル->xlsxファイル : xslsxファイル
     JapaneseTextData.json
         非必須オプション
@@ -90,21 +90,23 @@ DataTableBuilder.py &lt;in&gt; &lt;out&gt; [JapaneseTextData.json] [tid file] [m
         jsonファイル->xlsxファイル時限定で、出力ファイルがすでに存在しても強制的に上書きする
 </pre>
 
-例：SectorDataTable.jsonをワークシート名補間のためにtextdata_assets_all.bundleのJapaneseTextData.jsonとMODフォルダ(..\)を参照しつつxlsxファイルに変換する<br>
+例：SectorDataTable.jsonをワークシート名補間のためにJapaneseTextData.json[^1]とMODフォルダ(..\)を参照しつつxlsxファイルに変換する<br>
 ```DataTableBuilder.py SectorDataTable.json o.xlsx JapaneseTextData.json ..\```<br>
 例：..\Eden of the mad overlord\EdenMiscData.xlsxをjsonファイルに変換して..\Eden of the mad overlord\compiledフォルダに展開する<br>
 ```DataTableBuilder.py "..\Eden of the mad overlord\EdenMiscData.xlsx" "..\Eden of the mad overlord\compiled"```
 
+[^1]:JapaneseTextData.jsonはtextdata_assets_all.bundleに含まれている日本語テキストのテーブルです
+
 ## DngmapConv.py
 ExcelのxlsxファイルからDungeonInjectorで使用するjsonファイルを生成します。<br>
-また、dungeonmaps_assets_all.bundleから抽出したdngmapファイルをxlsxファイルへ変換することもできますが、マップに若干のバグは見られるため参考程度にしてください。<br>
+また、dungeonmaps_assets_all.bundleから抽出したdngmapファイルをxlsxファイルへ変換することもできますが、出力されたマップにバグが見られるため参考程度にしてください。<br>
 <pre>
 DngmapConv.py &lt;in&gt; &lt;out&gt; -t=decode/encode [-f/--force]
     &lt;in&gt;
-        xlsxファイル->jsonファイル : xlsxファイル<br>
+        xlsxファイル->jsonファイル : xlsxファイル
         jsonファイル->xlsxファイル : dungeonmaps_assets_all.bundleから抽出した*.dngmap.jsonファイル
     &lt;out&gt;
-        xlsxファイル->jsonファイル : jsonファイル(DungeonInjectorは*.dngmap.json形式のファイル名のファイルを読む)<br>
+        xlsxファイル->jsonファイル : jsonファイル(DungeonInjectorは*.dngmap.json形式のファイル名のファイルを読む)
         jsonファイル->xlsxファイル : xlsxファイル
     -t=decode/encode
         jsonファイルをxlsxファイルに変換する際にはencodeを、xlsxファイルをjsonファイルに変換する際にはdecodeを指定する
@@ -118,14 +120,14 @@ DngmapConv.py &lt;in&gt; &lt;out&gt; -t=decode/encode [-f/--force]
 
 ## CompileAll.py
 MODフォルダ内のスクリプトやxlsxファイルをCommandCompiler.py、DataTableBuilder.py、DngmapConv.pyを使用して一括変換します。<br>
-生成したファイルはcompiledフォルダを作成してその中に保存されますが、compiledフォルダはCompileAll.pyを実行する毎に削除されるため、compiledフォルダ内には自動生成されたファイル以外は決して置かないでください。<br>
+生成したファイルはcompiledフォルダを作成してその中に保存されますが、compiledフォルダはCompileAll.pyを実行する毎に削除されるため、compiledフォルダ内には自動生成されたファイル以外は***決して***置かないでください。<br>
 なお、いちいちコマンドラインを開くのも面倒なのでCompileAll.pyを実行するCompileAll.batも用意してあります。<br>
 デフォルトではCompileAll.pyを実行したフォルダ以下の**.Script.txt、**.xslxファイルを検索して変換にかけますが、対象フォルダを限定することもできます。<br>
 <pre>
 CompileAll.py [target dir]
     target dir
         非必須オプション
-        変換対象となるフォルダを限定する
+        変換対象となるフォルダを指定した一つだけに限定する
         このオプションを使用しない場合、作業フォルダ以下全てのフォルダが変換の対象となる
 </pre>
 
