@@ -3,10 +3,6 @@ import os
 import os.path
 import sys
 
-
-sys.path.append(os.path.join(os.path.dirname(__file__), "tool"))
-
-
 import CommandCompiler
 import DataTableBuilder
 import DngmapConv
