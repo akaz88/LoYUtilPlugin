@@ -150,9 +150,9 @@ class EnemyInjector
     /* CEVを基に作ったEnemyGraphicDataはアニメーションに一工夫必要 */
     public static bool ExSSFName(EnemyGraphicData enemyGraphicData, ref string __result)
     {
-        //cev_100_1.01をcev_100に変換しなければならない
         if(CEV_BASE < enemyGraphicData.Id && enemyGraphicData.Id <= CEV_END)
         {
+            //cev_100_1.01をcev_100に変換しなければならない
             string f = enemyGraphicData.FileName;
             if(f.Contains("."))
                 f = f.Substring(0, f.Length - 5);

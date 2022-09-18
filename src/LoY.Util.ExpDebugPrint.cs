@@ -17,7 +17,6 @@ class ExpDebugPrint
 {
     public static void enable(Harmony hm, ConfigFile cfg)
     {
-        //return;
         ConfigEntry<bool> enabled = cfg.Bind(
                 "Enable", "ExpDebugPrint", false,
                 "デバッグ用と思しきメッセージをコンソールに出力する\n"+

@@ -85,6 +85,7 @@ class ChooseDifficulty
     {
         update_difficulty();
         //黄金の砂時計使用後は敵のレベルをパーティの平均レベル*3/5上げる
+        //終盤になるとかばうが失敗すると侍が即死しがちでハゲるんで要修正か
         if(SessionFlagAccessorScripts.IsOnScriptFlag(GoldenHourglass.GoldenHourglassUsed))
         {
             Party party = Party.Current;
@@ -112,7 +113,9 @@ class ChooseDifficulty
     }
     */
 
-    /* 難易度宣託の結果を反映させる */
+    /* 難易度宣託の結果を反映させる
+     * 敵レベルを算出するたびに呼ばれるのは格好悪いので要修正か
+     */
     public static void update_difficulty()
     {
         if(!LoYUtilPlugin.mgr.is_enable)

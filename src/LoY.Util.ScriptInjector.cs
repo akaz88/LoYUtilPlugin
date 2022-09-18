@@ -45,6 +45,8 @@ class ScriptInjector
     public static Dictionary<string, DisplayString> textids = null;
     public static Dictionary<int, bool> exflags = null;
     public static readonly ScriptFlagId FlagId = (ScriptFlagId)1901;
+    public static readonly string TextIDResouceID = "ScriptInjector.textids";
+    public static readonly string ExFlagResouceID = "ScriptInjector.exflags";
 
     public static void enable(Harmony hm, ConfigFile cfg)
     {
@@ -85,7 +87,6 @@ class ScriptInjector
 
             org = Util.get_method(typeof(ScriptCommand), "GetParameterDisplayString");
             hook = typeof(ScriptInjector).GetMethod("ExternalDisplayString");
-            //hm.Patch(org, postfix: new HarmonyMethod(hook));
             hm.Patch(org, prefix: new HarmonyMethod(hook));
 
             //if(show_script_source.Value || true)
@@ -111,31 +112,28 @@ class ScriptInjector
         string parameter = __instance.GetParameter<string>(parameterIndex);
         __result = LoYUtilPlugin.mgr.TextId(parameter);
         return __result == null ? true : false;
-        /*if(__result == "")
-        {
-            string parameter = __instance.GetParameter<string>(parameterIndex);
-            DisplayString s = LoYUtilPlugin.mgr.TextId(parameter);
-            __result = s != null ? s : __result;
-        }*/
     }
 
-    /* LoYUtilResource\exflags.eflのフラグリストを読み込む */
+    /* LoYUtilResource\exflags.eflのフラグリストを読み込む
+     * フォーマットは超単純でFlagName1:FlagID1,FlagName2:FlagID2,...
+     */
     public static void load_exflags()
     {
         if(exflags == null)
         {
             exflags = new Dictionary<int, bool>();
-            LoYUtilPlugin.mgr.add_data("ScriptInjector.exflags", exflags);
+            LoYUtilPlugin.mgr.add_data(ExFlagResouceID, exflags);
         }
         else
             exflags.Clear();
         string path = Path.Combine(LoYUtilPlugin.rsrc_path, "exflags.efl");
         foreach(var p in File.ReadAllText(path).Split(','))
         {
+            //異常に短すぎるものは無視
             if(p.Length <= 2)
                 continue;
             string[] buf = p.Trim().Split(':');
-            //実際、フラグ名は要らない
+            //実際、フラグ名(buf[0])は要らない
             if(buf.Length == 2)
             {
                 int i = int.Parse(buf[1]);
@@ -149,25 +147,24 @@ class ScriptInjector
         }
     }
 
-    /* LoYUtilResourceフォルダから*.tidテキストを読み込む */
+    /* LoYUtilResourceフォルダから*.tidテキストを読み込む
+     * フォーマットはTextID1:SOME_TEXT,\nTextID2:SOME_TEXT,\n...
+     */
     public static void load_textids()
     {
         if(textids == null)
         {
             textids = new Dictionary<string, DisplayString>();
-            LoYUtilPlugin.mgr.add_data("ScriptInjector.textids", textids);
+            LoYUtilPlugin.mgr.add_data(TextIDResouceID, textids);
         }
         else
             textids.Clear();
-        //全角スペース以外をトリミング
-        //https://nofu.jp/wiki/blog/2015/2015-09-17
-        //char[] trim = {'\u0009', '\u000A', '\u000B', '\u000C', '\u000D', '\u0020', '\u00A0', '\u2000', '\u2001', '\u2002', '\u2003', '\u2004', '\u2005', '\u2006', '\u2007', '\u2008', '\u2009', '\u200A', '\u200B', '\uFEFF'};
         char[] trim = {'\r', '\n'};
         foreach(var f in Directory.GetFiles(LoYUtilPlugin.rsrc_path, "*.tid", SearchOption.AllDirectories))
         {
             foreach(var ln in File.ReadAllText(f).Split(','))
             {
-                //行が\r\nのみの時など
+                //行が\r\nのみの時など短かすぎる行(空行等)は無視
                 if(ln.Length <= 2)
                     continue;
                 string[] buf = ln.Trim(trim).Split(':');
@@ -215,7 +212,7 @@ class ScriptInjector
             {
                 //Console.Write("replace all: {0}", dp.Key);
                 if(replaces_all.Contains(dp.Key))
-                    Console.Write($"[ScriptInjector::load_scripts]{dp.Key} is already in replace_all.");
+                    Console.Write($"[ScriptInjector::load_scripts]{dp.Key} is already exist in replace_all.");
                 else
                     replaces_all.Add(dp.Key, dp.Value);
             }
@@ -291,7 +288,7 @@ class ScriptInjector
             s.SetCommands(cmds);
             org[n] = s;
         }
-        //新規追加されたスクリプトは中身を空にしておく
+        //新規追加されたスクリプトは中身を空にしておく…必要はなかった
         //foreach(var n in replaces_all.Names)
             //if(!original_code.Contains(n))
                 //org[n] = new ScriptSource();

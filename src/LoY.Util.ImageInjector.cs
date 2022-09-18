@@ -16,7 +16,9 @@ using Experience.ScriptEvent;
 namespace LoYUtil
 {
 
-/* 外部からのイメージの追加をできるようにする */
+/* 外部からのイメージの追加をできるようにする
+ * ver0.0.1現在ダンジョン突入時の看板(IngressEffect)しか対応していない
+ */
 class ImageInjector
 {
     public static readonly ScriptFlagId FlagId = (ScriptFlagId)1905;

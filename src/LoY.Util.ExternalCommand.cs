@@ -20,7 +20,9 @@ public class ExternalCommand
     public delegate ResultCode ExCommand(object self, ScriptCommand command);
     public static Dictionary<string, ExCommand> excommand = null;
     public static readonly ScriptFlagId FlagId = (ScriptFlagId)1906;
+    //拡張コマンドは常にコマンドIDが301となる
     public static readonly ScriptCommandId excmd_id = (ScriptCommandId)301;
+    public static readonly string ResouceID = "ExternalCommand.excommand";
 
     public static void enable(Harmony hm, ConfigFile cfg)
     {
@@ -39,7 +41,7 @@ public class ExternalCommand
             excommand["nop"] = nop;
 
             LoYUtilPlugin.mgr.add_flag(FlagId, true);
-            LoYUtilPlugin.mgr.add_data("ExternalCommand.excommand", excommand);
+            LoYUtilPlugin.mgr.add_data(ResouceID, excommand);
             GoldenHourglass.register_excommand();
 
             var org = Util.get_method(typeof(IScriptCommandBinderExtensions), "Execute");
@@ -73,7 +75,7 @@ public class ExternalCommand
         return ResultCode.Next;
     }
 
-    /* 何もしない */
+    /* 何もしないコマンド */
     public static ResultCode nop(object self, ScriptCommand command)
     {
         return ResultCode.Next;

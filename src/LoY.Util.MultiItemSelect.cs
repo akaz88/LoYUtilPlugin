@@ -47,10 +47,6 @@ class MultiItemSelect
             hook = hook_t.GetMethod("SetInputStateHook");
             hm.Patch(org, prefix: new HarmonyMethod(hook));
 
-            //org = Util.get_method(org_t, "UpdateInputState");
-            //hook = hook_t.GetMethod("UpdateInputStateHook");
-            //hm.Patch(org, prefix: new HarmonyMethod(hook));
-
             org = Util.get_method(typeof(InputItemSellRoot), "StartSelectInventory");
             hook = hook_t.GetMethod("ClearSelected");
             hm.Patch(org, prefix: new HarmonyMethod(hook));
@@ -153,7 +149,6 @@ class MultiItemSelect
         if(___inputState != InputState.SelectItem || shop_type == ShopType.None)
             return;
         //Y/Spaceキーでアイテムを選択
-        //if(Gamepad.GetKeyDown(GamepadKey.ActionRight) && ___inputState == InputState.SelectItem && shop_type != ShopType.None)
         if(Gamepad.GetKeyDown(GamepadKey.ActionRight))
         {
             //素直にMultiSelectを引数に積むと型チェックに引っかかってコケる
@@ -194,11 +189,8 @@ class MultiItemSelect
                 //Console.Write($"{t.id}: {t.item.DisplayName.Text}");
         }
         //L2/Zキーでアイテムを売却/抽出/移動
-        //else if(Gamepad.GetKeyDown(GamepadKey.L2) && ___inputState == InputState.SelectItem && selected.Count != 0 && shop_type != ShopType.None)
         else if(Gamepad.GetKeyDown(GamepadKey.L2) && selected.Count != 0)
         {
-            //foreach(var t in selected)
-                //Console.Write("{0} id:{1}, amount:{2}, price:{3}, fp:{4}", t.item.DisplayName, t.id, t.amount, t.item.GetSellingPrice() * t.amount, t.item.CalcDungeonMakingResourceExtractPoint() * t.amount);
             //チェックマークのクリアとアイテムの処理
             switch_check(__instance);
             if(shop_type == ShopType.Seller || shop_type == ShopType.Extractor || shop_type == ShopType.Dispose)
@@ -214,14 +206,14 @@ class MultiItemSelect
                 if(t == null)
                     l.Add(p);
                 else if(t.item_param.GetItemCount() != ItemListSelectionParam.ItemCountInvalid)
-                        l.Add(t.item_param);
+                    l.Add(t.item_param);
             }
             ___inputItemListWithTab.SetItemListSelectionParamList(l);
 
             __instance.UpdateSelectionParamList();
             //実際にアルゲン/花力が入るのはここ
             finalize();
-            //カーソルをいちいち動かされるのは面倒
+            //カーソルをいちいち動かされるのは面倒なのでリセットはナシにした
             //__instance.ResetListIndexSelected();
             selected.Clear();
             __result = true;
@@ -255,7 +247,6 @@ class MultiItemSelect
         t.item = ___itemListSelectionParamCurrent.GetItem();
         t.item_param = __instance.GetSelectionParamSelected();
         //廃棄/売買不能アイテムは対象としない
-        //Console.Write($"{t.id}: {t.item.IsDiscardable()}");
         if(!t.item.IsDiscardable() || !t.item.IsSellable())
             return false;
         selected.Add(t);
@@ -373,7 +364,7 @@ class MultiItemSelect
         }
         else
         {
-            Console.Write("shop type is {0}.", shop_type);
+            Console.Write("[MultiItemSelect::finalize()]shop type is {0}.", shop_type);
         }
     }
 

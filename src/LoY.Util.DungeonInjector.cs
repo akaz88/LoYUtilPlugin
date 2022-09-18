@@ -18,7 +18,9 @@ using Experience.ScriptEvent;
 namespace LoYUtil
 {
 
-/* ダンジョン関連のデータを追加する */
+/* ダンジョン関連のデータを追加する
+ * [TODO]:出口/Exitが反映できない問題の修正
+ */
 class DungeonInjector
 {
     static Dictionary<string, string> AssetTable = null;
@@ -99,7 +101,6 @@ class DungeonInjector
     {
         if(ExSectorDataTable == null)
             return true;
-        //Util.print_stack();
         __result = ExSectorDataTable;
         return false;
     }
@@ -122,7 +123,7 @@ class DungeonInjector
         return false;
     }
 
-    /* 地図帳に追加ダンジョンを反映させる */
+    /* メニューの地図帳に追加ダンジョンを反映させる */
     public static bool SetupSortedExDungeonIds(ref DungeonId[] ___sortedDungeonIdArray)
     {
         if(___sortedDungeonIdArray != null)
@@ -134,14 +135,14 @@ class DungeonInjector
         return false;
     }
 
-    /* カウントを行う前にマップデータを更新させる */
+    /* マップデータのカウントを行う前にマップデータを更新させる */
     public static void ResetReference(MapDataResourceTable __instance)
     {
         if(MapDataResourceTableDirty)
             Util.invoke(__instance, "SetupReference");
     }
 
-    /* アイテムを返す前にマップデータを更新させる */
+    /* マップアイテムを返す前にマップデータを更新させる */
     public static void SetDirty(string mapName, ref bool ___dirtyFlag)
     {
         //Console.Write("[SetDirty]{0}", mapName);
@@ -149,7 +150,7 @@ class DungeonInjector
             ___dirtyFlag = false;
     }
 
-    /* マップデータに読み込んだデータを挿入する */
+    /* マップデータテーブルに読み込んだデータを挿入する */
     public static void InsertReference(ref List<MapDataResource> ___resources, Dictionary<string, MapDataResource> ___references)
     {
         if(!MapDataResourceTableDirty || DngmapDict == null || DngmapDict.Count == 0)

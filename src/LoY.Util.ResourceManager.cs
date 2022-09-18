@@ -55,6 +55,7 @@ public class Manager
             return;
     }
 
+    /* MODで使用するフラグの辞書を返す */
     public Dictionary<int, bool> get_flag_dict()
     {
         if(!this.is_enable)
@@ -62,6 +63,7 @@ public class Manager
         return this.mod_flags;
     }
 
+    /* MODで使用するフラグに新たなフラグを追加する */
     public void add_flag(int flag, bool state=false)
     {
         if(!this.is_enable)
@@ -82,8 +84,8 @@ public class Manager
         this.add_flag((int)id, state);
     }
 
-    /* お約束：追加後のデータは必ずClear()して初期化するか、change_dataで反映させること
-     * きちんと手順をふまないとぬるぽになったり変な挙動をする
+    /* ResourceManagerで管理するデータをデータIDとデータ本体の形で登録する
+    　* データは必ず初期化しておかないといろんなところでぬるぽになったり変な挙動をする
      * 使用例：mgr.add_data("some_id", some_data)
      */
     public void add_data(string id, object data)
@@ -94,17 +96,27 @@ public class Manager
             this.mod_datas[id] = data;
     }
 
+    /* フラグ辞書から指定されたIDのフラグの真偽を返す */
+    public bool get_flag(int id)
+    {
+        //Console.Write($"get_flag: is_enable:{this.is_enable}, id:{id}, Contains:{this.contains_flag(id)}, Value:{this.mod_flags.GetValueOrDefault(id, false)}");
+        if(!this.is_enable || !this.contains_flag(id))
+            return false;
+        return this.mod_flags[id];
+    }
+
     public bool get_flag(ScriptFlagId id)
     {
         return this.get_flag((int)id);
     }
 
-    public bool get_flag(int id)
+    /* フラグ辞書に指定されたIDのフラグの真偽をセットする */
+    public void set_flag(int id, bool state)
     {
-        Console.Write($"get_flag: is_enable:{this.is_enable}, id:{id}, Contains:{this.mod_flags.ContainsKey(id)}, Value:{this.mod_flags.GetValueOrDefault(id, false)}");
-        if(!this.is_enable || !this.mod_flags.ContainsKey(id))
-            return false;
-        return this.mod_flags[id];
+        if(!this.is_enable)
+            return;
+        if(this.contains_flag(id))
+            this.mod_flags[id] = state;
     }
 
     public void set_flag(ScriptFlagId id, bool state)
@@ -112,14 +124,7 @@ public class Manager
         this.set_flag((int)id, state);
     }
 
-    public void set_flag(int id, bool state)
-    {
-        if(!this.is_enable)
-            return;
-        if(this.mod_flags.ContainsKey(id))
-            this.mod_flags[id] = state;
-    }
-
+    /* フラグ辞書に指定されたIDのフラグが格納されているかどうかを返す */
     public bool contains_flag(int id)
     {
         if(!this.is_enable)
@@ -132,14 +137,29 @@ public class Manager
         return this.contains_flag((int)id);
     }
 
+    /* 指定されたIDのテキストを一部修飾してDisplayStringとして返す
+     * "{}"で囲われたテキストは修飾の対象となる
+     * {HERO_NAME}
+     *     課長の呼び名から役職を除去したもの（例：光井課長->光井）
+     *     フルネームが欲しい場合は<player.fullname>を使用のこと
+     * {HERO_POST}
+     *     ゲームの進行状況によって変わる主人公の役職を返す(課長or部長)
+     * {TID@TEXT_ID}
+     *     TEXT_IDで指定されたテキストIDのテキストを返す
+     *     アイテム名等をテキストIDで指定しておくと後からの名称の変更が楽になる
+     *     ScriptInjecterが読み込んだtidファイルのテキストIDのみに対応している点に注意
+     *     ゲーム本編のテキストIDはどうせ変更されんのだからそのままベタ書きすればよろしい
+     *     例：{TID@GoldenHourglassNameDefault}を手に入れた！
+     *          -> 黄金の砂時計を手に入れた！
+     */
     public DisplayString TextId(string id)
     {
         //Console.Write("[TextId]{0}", id);
         if(!this.is_enable || id == null || id == "")
             return null;
-        if(!this.mod_datas.ContainsKey("ScriptInjector.textids"))
+        if(!this.mod_datas.ContainsKey(ScriptInjector.TextIDResouceID))
             return null;
-        Dictionary<string, DisplayString> d = (Dictionary<string, DisplayString>)this.mod_datas["ScriptInjector.textids"];
+        Dictionary<string, DisplayString> d = (Dictionary<string, DisplayString>)this.mod_datas[ScriptInjector.TextIDResouceID];
         if(!d.ContainsKey(id))
             return null;
         if(d[id].Text.Contains("{"))
@@ -169,7 +189,16 @@ public class Manager
                 //TextIDを再帰的に使えるようにする
                 //循環参照にならないように注意
                 else if(key.StartsWith("{TID@"))
-                    repl = this.TextId(key.Substring(5, key.Length - "{TID@}".Length)).Text;
+                {
+                    string tid = key.Substring(5, key.Length - "{TID@}".Length);
+                    if(id == tid)
+                    {
+                        Console.Write($"[ResourceManager::TextId]Error: Circular reference detected at {tid}!!");
+                        repl = "[Circular reference]";
+                    }
+                    else
+                        repl = this.TextId(tid).Text;
+                }
                 s = s.Replace(key, repl);
             }
             return DisplayString.Generate(s);
@@ -177,11 +206,12 @@ public class Manager
         return d[id];
     }
 
+    /* 追加コマンドを新たに追加する */
     public void add_excommand(string key, ExternalCommand.ExCommand cmd)
     {
         if(!this.is_enable)
             return;
-        Dictionary<string, ExternalCommand.ExCommand> excommand = (Dictionary<string, ExternalCommand.ExCommand>)this.mod_datas["ExternalCommand.excommand"];
+        Dictionary<string, ExternalCommand.ExCommand> excommand = (Dictionary<string, ExternalCommand.ExCommand>)this.mod_datas[ExternalCommand.ResouceID];
         if(excommand == null)
         {
             Console.Write("[add_excommand]Error: excommand dictionary is not registered.");
