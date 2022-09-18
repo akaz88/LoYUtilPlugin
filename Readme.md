@@ -37,10 +37,13 @@ Steam版黄泉ヲ裂ク華に以下の機能を追加します。
 
 ## インストール
 
+### BepInEx
 本MODはBepInEx(https://github.com/BepInEx/BepInEx)を使用しています。<br>
 githubのReleaseから64bit版BepInEx最新版(※開発環境ではBepInEx_x64_5.4.19.0.zipを使用)をダウンロードし、黄泉ヲ裂ク華のルートフォルダ(例：C:\Program Files (x86)\Steam\steamapps\common\Undernauts Labyrinth of Yomi\)にそのまま展開します。<br>
 Labyrinth of Yomi.exeとwinhttp.dllが同じフォルダに存在するように展開すればOKです。<br>
-ここに本MODのBepInExフォルダをそのまま上書きします。<br>
+
+### 黄泉ヲ裂ク華 Utility Plug-In MOD
+上記に本MODのBepInExフォルダをそのまま上書きします。<br>
 例えばC:\Program Files (x86)\Steam\steamapps\common\Undernauts Labyrinth of Yomi\BepInEx\plugins\LoY.Util.Plugin.dllというような階層になっていればOK。
 
 設定はBepInEx\config\LoY.Util.Plugin.cfgをテキストエディタで開いて行います。<br>

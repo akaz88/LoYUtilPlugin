@@ -61,7 +61,7 @@ EdenReturnBaseNarration04:灰十字にエデンでの経緯を説明した。,
 EdenReturnBaseTalk05H:「ははあ、総裁がねえ。
 　あの人も存外人間らしいところがあるものだ。」,
 EdenReturnBaseTalk06H:「……そうすると今は何度目なのだ？
-　系の中からは観測困難ということか？」,
+　系の中からは観測は困難ということか？」,
 EdenReturnBaseTalk07H:「……ん？なんだ、まだいたんですか。」,
 EdenReturnBaseTalk08H:「私は忙しいんです、
 　このガラクタのことなら神の子にでも聞いてください。」,
@@ -84,12 +84,12 @@ EdenReturnBaseTalk17L:「対して狂王の場合はそれがどの時点なの�
 　正確に推測することは困難です。」,
 EdenReturnBaseTalk18L:「また、本来時間を巻き戻すにあたってはあらゆる知識、
 　経験、持ち物は持っていくことはできませんが……。」,
-EdenReturnBaseTalk19L:「この融合炉の力があれば、
+EdenReturnBaseTalk19L:「この霊樹の力があれば、
 　それらの一部は持っていくことができるでしょう。」,
 EdenReturnBaseTalk20L:「具体的には世界に矛盾を生じるような物品や記憶。
 　そういったものは失われることでしょう。」,
 EdenReturnBaseTalk21L:「つまり、何度巻き戻っても{HERO_POST}さんの部下の方々や、
-　第二キャンプの方々は殺され続ける……。」,
+　第二キャンプのあの人たちは殺され続ける……。」,
 EdenReturnBaseTalk22L:「それでも力を得て時を遡った狂王を止められるのは、
 　{HERO_POST}さんしかおりません。」,
 EdenReturnBaseTalk23L:「しかしながら、全ては私達の時の埒外にある事柄……。」,
@@ -112,4 +112,4 @@ GoldenHourglassUseTalk03:「また、いつか、どこかで……
 GoldenHourglassUseTalk04:「それまで、どうか。
 　お気をつけて……。」,
 GoldenHourglassUseNarration05:{TID@GoldenHourglassNameDefault}を受け取った少女は融合炉へ向かった。,
-GoldenHourglassUseNarration06:そしてそれを炉に焼べた。,
+GoldenHourglassUseNarration06:そしてそれを融合炉の中へ放りこんだ。,
